@@ -40,13 +40,43 @@ public class panel extends JPanel implements MouseListener {
 
 			//g.drawImage(ref, 0, 0, getWidth(), getHeight(), null); 
 			g.setColor(color.white);
-			int dim = 75;
-			for(int i = 0; i < 5; i++) {
+			int dim = 65;
+			int center_offset = (dim/2);
+			/*
+			for(int i = 0; i < 6; i++) {
+			int height = 30;
+				for (int k = 0; k < 5; k++) {
+					g.drawOval(getWidth()/(int) Math.pow(2, i) + 1 - center_offset, height, dim, dim);
+				}
+			height += (int) (dim * 0.75);
 				//2, 3, 5, 9, 17
 				//2^i + 1
 			}
-			g.drawOval(getWidth()/2 - (dim/2), 30, dim, dim);
-			g.drawOval(getWidth()/3 - (dim/2), 30 + (int) (dim * 0.75), dim, dim);
+			*/
+			
+			
+			int height = 30;
+			for(int i = 0; i < 5; i++) {
+				
+					for (int k = 1; k < Math.pow(2, i) + 1; k++) {
+						g.drawOval(((getWidth()/(int) (Math.pow(2, i) + 1)) * k - center_offset) , height, dim, dim);
+						//2, 3, 5, 9, 17
+						//2^i + 1
+					}
+				height += dim;					
+			}
+			
+			height = 30;
+			for(int i = 0; i < 4; i++) { // < 4 because there shouldnt be any lines on the bottom row
+					for (int k = 1; k < Math.pow(2, i) + 1; k++) {
+						g.drawLine(((getWidth()/(int) (Math.pow(2, i) + 1)) * k - center_offset) , height + center_offset, ((getWidth()/(int) (Math.pow(2, i + 1) + 1)) * k - center_offset) + dim, height + dim);
+						g.drawLine(((getWidth()/(int) (Math.pow(2, i) + 1)) * k - center_offset) + dim , height + center_offset, ((getWidth()/(int) (Math.pow(2, i - 1) + 1)) * k + center_offset) + dim, height + dim);
+						//2, 3, 5, 9, 17
+						//2^i + 1
+					}
+				height += dim;					
+			}
+			
 	}
 	
 	public void mouseClicked(MouseEvent e) {
