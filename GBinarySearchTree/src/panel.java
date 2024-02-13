@@ -57,10 +57,11 @@ public class panel extends JPanel implements MouseListener {
 			
 			int height = 30;
 			for(int i = 0; i < 5; i++) {
-				
 					for (int k = 1; k < Math.pow(2, i) + 1; k++) {
-						g.drawOval(((getWidth()/(int) (Math.pow(2, i) + 1)) * k - center_offset) , height, dim, dim);
-						//2, 3, 5, 9, 17
+						if (k % 2 != 0) { g.drawOval(  (getWidth()/ (int) (Math.pow(2, i) + 1) * k - center_offset - 20) , height, dim, dim); } // left offset
+						else { g.drawOval(  (getWidth()/ (int) (Math.pow(2, i) + 1) * k - center_offset + 20) , height, dim, dim); } // right offset
+						// !! BOTH OFFSETS ARE BY 20. THIS IS BECAUSE YOUR TREE LOOKS LIKE SHIT WITHOUT THEM. have fun gabe !!
+						//2, 3, 5, 9, [17]
 						//2^i + 1
 					}
 				height += dim;					
@@ -68,9 +69,23 @@ public class panel extends JPanel implements MouseListener {
 			
 			height = 30;
 			for(int i = 0; i < 4; i++) { // < 4 because there shouldnt be any lines on the bottom row
-					for (int k = 1; k < Math.pow(2, i) + 1; k++) {
-						g.drawLine(((getWidth()/(int) (Math.pow(2, i) + 1)) * k - center_offset) , height + center_offset, ((getWidth()/(int) (Math.pow(2, i + 1) + 1)) * k - center_offset) + dim, height + dim);
-						g.drawLine(((getWidth()/(int) (Math.pow(2, i) + 1)) * k - center_offset) + dim , height + center_offset, ((getWidth()/(int) (Math.pow(2, i - 1) + 1)) * k + center_offset) + dim, height + dim);
+				int nCount = (int) Math.pow(2, i) + 1;	
+				for (int k = 1; k < nCount; k++) {
+						if (k == 1) {
+							g.drawLine(((getWidth()/(int) (nCount)) * k - center_offset - 20) , height + center_offset, ((getWidth()/(int) (Math.pow(2, i + 1) + 1)) * k - center_offset * 2 - 20) + dim, height + dim); // left
+							//g.drawLine(((getWidth()/(int) (nCount)) * k - center_offset) + dim, height + center_offset, ((getWidth()/(int) (Math.pow(2, i + 1) + 1)) * k + center_offset * 2) + dim, height + dim); // left
+						}
+						else {
+							if (k % 2 != 0) {
+								g.drawLine(((getWidth()/(int) (nCount)) * k - center_offset) - 20 , height + center_offset, ((getWidth()/(int) (Math.pow(2, i + 1) + 1))  *  ((k * 2) - 1) - center_offset * 2 ) - 20 + dim, height + dim);
+							}
+							else {
+								g.drawLine(((getWidth()/(int) (nCount)) * k - center_offset) + 20 , height + center_offset, ((getWidth()/(int) (Math.pow(2, i + 1) + 1))  *  ((k * 2) - 1) - center_offset * 2) - 20 + dim, height + dim);
+							}
+							//g.drawLine(((getWidth()/(int) (nCount)) * k - center_offset) + dim, height + center_offset, ((getWidth()/(int) (Math.pow(2, i + 1) + 1))  *  ((k * 2) - 1) + center_offset * 2) + dim, height + dim); // left
+						}
+						//g.drawLine(((getWidth()/(int) (nCount)) * k - center_offset) , height + center_offset, ((getWidth()/(int) (Math.pow(2, i + 1) + 1)) * k - center_offset) + dim, height + dim); // left
+						//          (((getWidth()/(int) (nCount)) * k - center_offset) + dim , height + center_offset, ((getWidth()/(int) (Math.pow(2, i + 1) + 1)) * k + center_offset) + dim, height + dim);
 						//2, 3, 5, 9, 17
 						//2^i + 1
 					}
