@@ -73,14 +73,14 @@ public class panel extends JPanel implements MouseListener {
 				for (int k = 1; k < nCount; k++) {
 						if (k == 1) {
 							g.drawLine(((getWidth()/(int) (nCount)) * k - center_offset - 20) , height + center_offset, ((getWidth()/(int) (Math.pow(2, i + 1) + 1)) * k - center_offset * 2 - 20) + dim, height + dim); // left
-							//g.drawLine(((getWidth()/(int) (nCount)) * k - center_offset) + dim, height + center_offset, ((getWidth()/(int) (Math.pow(2, i + 1) + 1)) * k + center_offset * 2) + dim, height + dim); // left
+							//g.drawLine(((getWidth()/(int) (nCount)) * k - center_offset  - 20) + dim, height + center_offset, ((getWidth()/(int) (Math.pow(2, i + 1) + 1)) * k + center_offset * 2 - 20) + dim, height + dim); // left
 						}
 						else {
 							if (k % 2 != 0) {
-								g.drawLine(((getWidth()/(int) (nCount)) * k - center_offset) - 20 , height + center_offset, ((getWidth()/(int) (Math.pow(2, i + 1) + 1))  *  ((k * 2) - 1) - center_offset * 2 ) - 20 + dim, height + dim);
+								//g.drawLine(((getWidth()/(int) (nCount)) * k - center_offset) - 20 , height + center_offset, ((getWidth()/(int) (Math.pow(2, i + 1) + 1))  *  ((k * 2) - 1) - center_offset * 2 ) - 20 + dim, height + dim);
 							}
 							else {
-								g.drawLine(((getWidth()/(int) (nCount)) * k - center_offset) + 20 , height + center_offset, ((getWidth()/(int) (Math.pow(2, i + 1) + 1))  *  ((k * 2) - 1) - center_offset * 2) - 20 + dim, height + dim);
+								//g.drawLine(((getWidth()/(int) (nCount)) * k - center_offset) + 20 , height + center_offset, ((getWidth()/(int) (Math.pow(2, i + 1) + 1))  *  ((k * 2) - 1) - center_offset * 2) - 20 + dim, height + dim);
 							}
 							//g.drawLine(((getWidth()/(int) (nCount)) * k - center_offset) + dim, height + center_offset, ((getWidth()/(int) (Math.pow(2, i + 1) + 1))  *  ((k * 2) - 1) + center_offset * 2) + dim, height + dim); // left
 						}
